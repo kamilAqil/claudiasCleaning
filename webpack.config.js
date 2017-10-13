@@ -1,5 +1,8 @@
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
+
+
+
 module.exports = {
     entry: './client/src/app.js',
     output: {
@@ -17,10 +20,29 @@ module.exports = {
             loader: 'babel-loader',
             test: /\.js$/,
             exclude: /node_modules/
-        }
-        , {
-            test: /\.s?css$/
-        }],
+        },{
+            test: /\.scss$/,
+            use:[
+                'style-loader',
+                'css-loader',
+                'sass-loader'
+            ]
+            }, 
+            {
+                test: /\.(jpg|png|svg)$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 25000,
+                },
+            },
+            {
+                test: /\.(jpg|png|svg)$/,
+                loader: 'file-loader',
+                options: {
+                    name: '[path][name]',
+                },
+            },
+        ],
     },
     devtool: 'eval-source-map'
 };
