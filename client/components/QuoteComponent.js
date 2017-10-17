@@ -37,12 +37,21 @@ let formBackgroundStyle = {
     filter:'blur(5px) brightness(120%) opacity(76%)'
 }
 
+let formGroupStyle = {
+    textAlign: 'center'
+}
+
 let formStyle = {
     position:'absolute',
     top: '2.5%',
     left: '2.5%',
     zIndex:'1',
     textAlign:'center'
+}
+
+let textAreaStyle = {
+    borderRadius : '10px',
+    textAlign: 'center'
 }
 
 
@@ -75,11 +84,13 @@ class QuoteComponent extends React.Component{
                 <img src='/images/cleanHousePicOne.jpg' style={roomPictureBackgroundStyle}></img>
                 <div style={formBackgroundStyle}/>
                 <form style={formStyle}>
-                    <div>
-                        <textarea name='firstName' placeholder='First Name' onChange={this.handleChange} value={this.state.firstName} />
+                    <div style={formGroupStyle}>
+                        <span>First Name</span><br/>
+                        <textarea name='firstName' style={textAreaStyle} placeholder='First Name' onChange={this.handleChange} value={this.state.firstName} />
                     </div>
-                    <div>
-                        <textarea name='lastName' placeholder='Last Name' onChange={this.handleChange} />
+                    <div style={formGroupStyle}>
+                        <span>Last Name</span><br />
+                        <textarea name='lastName' style={textAreaStyle} placeholder='Last Name' onChange={this.handleChange} />
                     </div>
                 </form>
             </div>
