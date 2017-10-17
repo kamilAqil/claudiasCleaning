@@ -9,7 +9,13 @@ let containerStyle = {
     border:'2px solid #F0FF79',
     position:'relative',
     borderRadius:'10px',
-    overflow:'hidden'
+    overflow:'hidden',
+    display: 'grid',
+    gridTemplateColumns:'[firstColumn]50%[secondColumn]50%[end]',
+    gridTemplateRows:'[rowOne]40%[rowOneEnd]30%[rowTwoEnd]30%[lastLine]',
+    gridTemplateAreas:`"header header"
+                        "r1C1 r1C2"
+                        "r2C2 r2C2"`
     // background:'url(/images/cleanHousePicOne.jpg) no-repeat center',
     // filter: 'blur(5px)'
 };
@@ -21,25 +27,26 @@ let roomPictureBackgroundStyle = {
     borderRadius:'10px',
     top:'0px',
     left:'0px',
-    zIndex:'0'
+    zIndex:'0',
 }
 
 let formBackgroundStyle = {
     width:'95%',
     height:'95%',
     position:'absolute',
-    position:'relative',
     backgroundColor:'white',
     top: '2.5%',
     left: '2.5%',
-    zIndex:'1',
+    zIndex:'0',
     borderRadius:'10px',
     filter:'blur(5px) brightness(120%) opacity(76%)'
 }
 
 let formGroupStyle = {
-    textAlign: 'center'
+    textAlign: 'center',
+    display:'inline'
 }
+
 
 let formStyle = {
     position:'absolute',
@@ -84,14 +91,14 @@ class QuoteComponent extends React.Component{
                 <img src='/images/cleanHousePicOne.jpg' style={roomPictureBackgroundStyle}></img>
                 <div style={formBackgroundStyle}/>
                 <form style={formStyle}>
-                    <div style={formGroupStyle}>
-                        <span>First Name</span><br/>
-                        <textarea name='firstName' style={textAreaStyle} placeholder='First Name' onChange={this.handleChange} value={this.state.firstName} />
-                    </div>
-                    <div style={formGroupStyle}>
-                        <span>Last Name</span><br />
-                        <textarea name='lastName' style={textAreaStyle} placeholder='Last Name' onChange={this.handleChange} />
-                    </div>
+                        <div style={formGroupStyle}>
+                            <span>First Name</span><br />
+                            <input name='firstName' style={textAreaStyle} placeholder='First Name' onChange={this.handleChange} value={this.state.firstName} />
+                        </div>
+                        <div style={formGroupStyle}>
+                            <span>Last Name</span><br />
+                            <input name='lastName' style={textAreaStyle} placeholder='Last Name' onChange={this.handleChange} />
+                        </div>
                 </form>
             </div>
         )
