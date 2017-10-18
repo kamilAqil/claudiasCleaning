@@ -5,6 +5,7 @@ let bodyParser = require("body-parser");
 let logger = require("morgan");
 let path = require("path");
 let PORT = process.env.PORT;
+let formRouter = require('./routes/formRoutes');
 
 
 // Create Instance of Express
@@ -19,6 +20,8 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // express needs to handle static files 
 app.use(express.static("./client/public"));
+
+app.use('/submitForm',formRouter);
 
 // express needs to get all routes to be able to handle react router
 let file = path.resolve("./client/public/index.html");
