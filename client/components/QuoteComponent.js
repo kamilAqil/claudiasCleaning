@@ -127,6 +127,10 @@ class QuoteComponent extends React.Component{
 
     handleFormSubmit(){
         console.log('clicked form submit');
+
+        // validate inputs here
+        
+
         axios.post('/submitForm',{
             firstName : this.state.firstName,
             lastName : this.state.lastName,
@@ -146,19 +150,19 @@ class QuoteComponent extends React.Component{
                     <span style={styles.formHeaderStyle}>Get A Quote</span>
                     <div style={styles.formGroupInputOneStyle}>
                             <span>First Name</span><br />
-                            <input name='firstName' style={styles.textAreaStyle} placeholder='First Name' onChange={this.handleChange} value={this.state.firstName} />
+                            <input name='firstName' style={styles.textAreaStyle} placeholder='First Name' onChange={this.handleChange} value={this.state.firstName} required />
                         </div>
                     <div style={styles.formGroupInputTwoStyle}>
                             <span>Last Name</span><br />
-                            <input name='lastName' style={styles.textAreaStyle} placeholder='Last Name' onChange={this.handleChange} />
+                            <input name='lastName' style={styles.textAreaStyle} placeholder='Last Name' onChange={this.handleChange} required />
                         </div>
                     <div style={styles.formGroupInputThreeStyle}>
                             <span>Phone Number</span><br />
-                            <input name='phoneNumber' style={styles.textAreaStyle} placeholder='Phone Number' onChange={this.handleChange} />
+                            <input name='phoneNumber' style={styles.textAreaStyle} placeholder='Phone Number' onChange={this.handleChange} required />
                         </div>
                     <div style={styles.formGroupInputFourStyle}>
                             <span>Date of Service</span><br />
-                            <input name='dateOfService' style={styles.textAreaStyle} type='date' onChange={this.handleChange} />
+                            <input name='dateOfService' style={styles.textAreaStyle} type='date' onChange={this.handleChange} required />
                         </div>
                     <button style={styles.submitButtonStyle} onClick={this.handleFormSubmit}>Submit</button>
                     </div>
