@@ -100,6 +100,9 @@ let styles = {
         backgroundColor: '#004EFF',
         border: '1px solid black',
         color: 'white'
+    },
+    formStyle : {
+       display : 'inherit' 
     }
 }
 
@@ -129,7 +132,9 @@ class QuoteComponent extends React.Component{
         console.log('clicked form submit');
 
         // validate inputs here
-        
+        if (this.state.firstName == '' || this.state.lastName=='' ){
+
+        }
 
         axios.post('/submitForm',{
             firstName : this.state.firstName,
@@ -146,26 +151,27 @@ class QuoteComponent extends React.Component{
             <div style={styles.containerStyle}>
                 <img src='/images/cleanHousePicOne.jpg' style={styles.roomPictureBackgroundStyle}></img>
                 <div style={styles.formBackgroundStyle}></div>
-                    <div style={styles.formGrid}>
-                    <span style={styles.formHeaderStyle}>Get A Quote</span>
-                    <div style={styles.formGroupInputOneStyle}>
+                    
+                    <form style={styles.formGrid}>
+                        <span style={styles.formHeaderStyle}>Get A Quote</span>
+                        <div style={styles.formGroupInputOneStyle}>
                             <span>First Name</span><br />
                             <input name='firstName' style={styles.textAreaStyle} placeholder='First Name' onChange={this.handleChange} value={this.state.firstName} required />
                         </div>
-                    <div style={styles.formGroupInputTwoStyle}>
+                        <div style={styles.formGroupInputTwoStyle}>
                             <span>Last Name</span><br />
                             <input name='lastName' style={styles.textAreaStyle} placeholder='Last Name' onChange={this.handleChange} required />
                         </div>
-                    <div style={styles.formGroupInputThreeStyle}>
+                        <div style={styles.formGroupInputThreeStyle}>
                             <span>Phone Number</span><br />
                             <input name='phoneNumber' style={styles.textAreaStyle} placeholder='Phone Number' onChange={this.handleChange} required />
                         </div>
-                    <div style={styles.formGroupInputFourStyle}>
+                        <div style={styles.formGroupInputFourStyle}>
                             <span>Date of Service</span><br />
                             <input name='dateOfService' style={styles.textAreaStyle} type='date' onChange={this.handleChange} required />
                         </div>
-                    <button style={styles.submitButtonStyle} onClick={this.handleFormSubmit}>Submit</button>
-                    </div>
+                        <button style={styles.submitButtonStyle} onClick={this.handleFormSubmit}>Submit</button>
+                    </form>
                     
             </div>
         )
