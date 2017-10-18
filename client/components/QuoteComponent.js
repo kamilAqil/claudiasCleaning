@@ -8,17 +8,21 @@ let containerStyle = {
     marginTop:'10px',
     border:'2px solid #F0FF79',
     position:'relative',
-    borderRadius:'10px',
-    overflow:'hidden',
-    display: 'grid',
-    gridTemplateColumns:'[firstColumn]50%[secondColumn]50%[end]',
-    gridTemplateRows:'[rowOne]40%[rowOneEnd]30%[rowTwoEnd]30%[lastLine]',
-    gridTemplateAreas:`"header header"
-                        "r1C1 r1C2"
-                        "r2C2 r2C2"`
+    borderRadius:'10px'
     // background:'url(/images/cleanHousePicOne.jpg) no-repeat center',
     // filter: 'blur(5px)'
 };
+
+let formGrid = {
+    height:'100%',
+    width:'100%',
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gridTemplateRows: '1fr 2fr 2fr',
+    gridTemplateAreas: `"header header"
+                        "r1C1 r1C2"
+                        "r2C1 r2C2"`
+}
 
 let roomPictureBackgroundStyle = {
     position: 'absolute',
@@ -42,23 +46,71 @@ let formBackgroundStyle = {
     filter:'blur(5px) brightness(120%) opacity(76%)'
 }
 
-let formGroupStyle = {
-    textAlign: 'center',
-    display:'inline'
+let blackBorder = '1px solid black'
+
+let formGroupInputOneStyle = {
+    gridArea:'r1C1',
+    zIndex:'1',
+    justifySelf:'center',
+    alignSelf:'start',
+    textAlign:'center'
+}
+
+let formGroupInputTwoStyle = {
+    gridArea: 'r1C2',
+    zIndex: '1',
+    justifySelf: 'center',
+    alignSelf:'start',
+    textAlign:'center'
+}
+
+let formGroupInputThreeStyle = {
+    gridArea: 'r2C1',
+    zIndex: '1',
+    justifySelf: 'center',
+    alignSelf:'start',
+    textAlign:'center'
+}
+
+let formGroupInputFourStyle = {
+    gridArea: 'r2C2',
+    zIndex: '1',
+    justifySelf: 'center',
+    alignSelf:'start',
+    textAlign:'center'
 }
 
 
-let formStyle = {
-    position:'absolute',
-    top: '2.5%',
-    left: '2.5%',
+let formHeaderStyle = {
+    gridArea:'header',
+    fontSize:'30px',
     zIndex:'1',
-    textAlign:'center'
+    justifySelf:'center',
+    alignSelf:'center'
 }
 
 let textAreaStyle = {
     borderRadius : '10px',
-    textAlign: 'center'
+    textAlign: 'center',
+    border: blackBorder,
+    height:'35px',
+    fontSize:'15px'
+}
+
+let submitButtonStyle = {
+    width:'89px',
+    height:'23px',
+    gridArea:'r2C2',
+    zIndex:'1',
+    justifySelf:'end',
+    alignSelf:'end',
+    height:'30%',
+    marginBottom:'10%',
+    marginRight:'10%',
+    borderRadius:'10px',
+    backgroundColor:'#004EFF',
+    border: '1px solid black',
+    color:'white'
 }
 
 
@@ -89,17 +141,28 @@ class QuoteComponent extends React.Component{
         return(
             <div style={containerStyle}>
                 <img src='/images/cleanHousePicOne.jpg' style={roomPictureBackgroundStyle}></img>
-                <div style={formBackgroundStyle}/>
-                <form style={formStyle}>
-                        <div style={formGroupStyle}>
+                <div style={formBackgroundStyle}></div>
+                    <div style={formGrid}>
+                        <span style={formHeaderStyle}>Get A Quote</span>
+                        <div style={formGroupInputOneStyle}>
                             <span>First Name</span><br />
                             <input name='firstName' style={textAreaStyle} placeholder='First Name' onChange={this.handleChange} value={this.state.firstName} />
                         </div>
-                        <div style={formGroupStyle}>
+                        <div style={formGroupInputTwoStyle}>
                             <span>Last Name</span><br />
                             <input name='lastName' style={textAreaStyle} placeholder='Last Name' onChange={this.handleChange} />
                         </div>
-                </form>
+                        <div style={formGroupInputThreeStyle}>
+                            <span>Phone Number</span><br />
+                            <input name='phoneNumber' style={textAreaStyle} placeholder='Phone Number' onChange={this.handleChange} />
+                        </div>
+                        <div style={formGroupInputFourStyle}>
+                            <span>Date of Service</span><br />
+                            <input name='dateOfService' style={textAreaStyle} type='date' onChange={this.handleChange} />
+                        </div>
+                        <button style={submitButtonStyle} onClick={handleFormSubmit}>Submit</button>
+                    </div>
+                    
             </div>
         )
     }
