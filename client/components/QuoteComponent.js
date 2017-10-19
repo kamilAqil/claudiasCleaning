@@ -1,15 +1,17 @@
 import React from 'react';
 import BackgroundImage from '../images/cleanHousePicOne.jpg';
-import axios from 'axios'
-
+import axios from 'axios';
+import Form from 'react-validation/build/form';
+import Input from 'react-validation/build/input';
 let blackBorder = '1px solid black'
 
 let styles = {
     containerStyle : {
-        height: '360px',
-        width: '369px',
-        margin: 'auto',
-        marginTop: '10px',
+        gridArea: 'quote',
+        height:'100%',
+        width:'100%',
+        marginTop:'10px',
+        padding:'5px',
         border: '2px solid #F0FF79',
         position: 'relative',
         borderRadius: '10px'
@@ -21,8 +23,8 @@ let styles = {
         gridTemplateColumns: '1fr 1fr',
         gridTemplateRows: '1fr 2fr 2fr',
         gridTemplateAreas: `"header header"
-                        "r1C1 r1C2"
-                        "r2C1 r2C2"`
+                            "r1C1 r1C2"
+                            "r2C1 r2C2"`
     },
     roomPictureBackgroundStyle : {
         position: 'absolute',
@@ -46,6 +48,7 @@ let styles = {
     },
     formGroupInputOneStyle : {
         gridArea: 'r1C1',
+        width: '100%',
         zIndex: '1',
         justifySelf: 'center',
         alignSelf: 'start',
@@ -53,6 +56,7 @@ let styles = {
     },
     formGroupInputTwoStyle : {
         gridArea: 'r1C2',
+        width: '100%',
         zIndex: '1',
         justifySelf: 'center',
         alignSelf: 'start',
@@ -60,6 +64,7 @@ let styles = {
     },
     formGroupInputThreeStyle : {
         gridArea: 'r2C1',
+        width: '100%',
         zIndex: '1',
         justifySelf: 'center',
         alignSelf: 'start',
@@ -67,10 +72,12 @@ let styles = {
     },
     formGroupInputFourStyle : {
         gridArea: 'r2C2',
+        width: '100%',
         zIndex: '1',
         justifySelf: 'center',
         alignSelf: 'start',
-        textAlign: 'center'
+        textAlign: 'center',
+        position:'relative'
     },
     formHeaderStyle : {
         gridArea: 'header',
@@ -81,25 +88,24 @@ let styles = {
     },
     textAreaStyle : {
         borderRadius: '10px',
+        width:'60%',
         textAlign: 'center',
         border: blackBorder,
         height: '35px',
         fontSize: '15px'
     },
     submitButtonStyle : {
-        width: '89px',
-        height: '23px',
-        gridArea: 'r2C2',
+        width: '16%',
+        height: '36%',
         zIndex: '1',
-        justifySelf: 'end',
-        alignSelf: 'end',
-        height: '30%',
-        marginBottom: '10%',
-        marginRight: '10%',
-        borderRadius: '10px',
+        borderRadius: '5px',
         backgroundColor: '#004EFF',
         border: '1px solid black',
-        color: 'white'
+        color: 'white',
+        justifySelf: 'end',
+        position:'absolute',
+        right:'20%',
+        bottom:'-40%'
     },
     formStyle : {
        display : 'inherit' 
@@ -128,13 +134,8 @@ class QuoteComponent extends React.Component{
         // console.log(this.state);
     }
 
-    handleFormSubmit(){
+    handleFormSubmit(event){
         console.log('clicked form submit');
-
-        // validate inputs here
-        if (this.state.firstName == '' || this.state.lastName=='' ){
-
-        }
 
         axios.post('/submitForm',{
             firstName : this.state.firstName,
@@ -148,7 +149,7 @@ class QuoteComponent extends React.Component{
 
     render(){
         return(
-            <div style={styles.containerStyle}>
+            <div id='formContainer' style={styles.containerStyle}>
                 <img src='/images/cleanHousePicOne.jpg' style={styles.roomPictureBackgroundStyle}></img>
                 <div style={styles.formBackgroundStyle}></div>
                     
@@ -156,21 +157,26 @@ class QuoteComponent extends React.Component{
                         <span style={styles.formHeaderStyle}>Get A Quote</span>
                         <div style={styles.formGroupInputOneStyle}>
                             <span>First Name</span><br />
-                            <input name='firstName' style={styles.textAreaStyle} placeholder='First Name' onChange={this.handleChange} value={this.state.firstName} required />
+                            <input name='firstName' style={styles.textAreaStyle} placeholder='First Name' onChange={this.handleChange} value={this.state.firstName} required/>
                         </div>
                         <div style={styles.formGroupInputTwoStyle}>
                             <span>Last Name</span><br />
-                            <input name='lastName' style={styles.textAreaStyle} placeholder='Last Name' onChange={this.handleChange} required />
+                            <input name='lastName' style={styles.textAreaStyle} placeholder='Last Name' 
+                            onChange={this.handleChange} required />
                         </div>
                         <div style={styles.formGroupInputThreeStyle}>
                             <span>Phone Number</span><br />
-                            <input name='phoneNumber' style={styles.textAreaStyle} placeholder='Phone Number' onChange={this.handleChange} required />
+                            <input type='email' style={styles.textAreaStyle} placeholder='Phone Number' 
+                            onChange={this.handleChange} required />
                         </div>
                         <div style={styles.formGroupInputFourStyle}>
                             <span>Date of Service</span><br />
-                            <input name='dateOfService' style={styles.textAreaStyle} type='date' onChange={this.handleChange} required />
+                            <input name='dateOfService' style={styles.textAreaStyle} type='date' 
+                            onChange={this.handleChange} required />
+                            <br/>
+                            <input type='submit' value='submit' style={styles.submitButtonStyle}
+                                onClick={this.handleFormSubmit}></input>
                         </div>
-                        <button style={styles.submitButtonStyle} onClick={this.handleFormSubmit}>Submit</button>
                     </form>
                     
             </div>

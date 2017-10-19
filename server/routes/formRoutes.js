@@ -21,21 +21,28 @@ router.post('/',function(req,res){
         from: process.env.FROMEMAIL, // sender address
         to: process.env.TOEMAIL, // list of receivers
         subject: 'NEW CLEANING REQUEST', // Subject line
-        html: `Email from ${req.body.firstName + " " + req.body.lastName}
-               Phone Number To Call ${req.body.phoneNumber}
+        html: `Email from ${req.body.firstName + " " + req.body.lastName}<br/>
+               Phone Number To Call ${req.body.phoneNumber}<br/>
                Date Requested ${req.body.date} `// plain text body
     };
 
-    transport.sendMail(mailOptions, function (err, info) {
-        if (err){
-            console.log(err)
-            res.send('email not sent');
+    if (req.body.firstName == undefined || req.body.lastName == undefined ||
+        req.body.phoneNumber == undefined || req.body.date == undefined){
+            console.log('email not complete to send');
+        }else{
+            transport.sendMail(mailOptions, function (err, info) {
+                if (err) {
+                    console.log(err)
+                    res.send('email not sent');
+                }
+                else {
+                    console.log(info);
+                    res.send('Mail transport response',info);
+                }
+            });
         }
-        else{
-            console.log(info);
-            res.send('response from server form route');
-        }
-    });
+
+    
 
     console.log(req.body);
     // take info from post to route
