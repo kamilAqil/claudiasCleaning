@@ -4,19 +4,23 @@ let styles = {
     errorComponentStyle : {
         zIndex:'1',
         color:'black',
-        fontSize:'50px',
+        fontSize:'20px',
         gridArea:'r2C2'
     }
 }
 
+const ErrorComponent = (errors) => {
+    
+    let errorsArray = errors.errors;
 
-const ErrorComponent = (formErrors) => {
-   console.log(formErrors);
-    return (<div id='formErrorComponent' style={styles.errorComponentStyle}>
-        <p>words</p>
-
-    </div>)
-}
+    return(
+            <div id="errorContainer" style={styles.errorComponentStyle}>
+                {errorsArray.map((error)=>{
+                    return(<div>{error}</div>)
+                })}
+            </div>
+    )     
+};
 
 export default ErrorComponent
 

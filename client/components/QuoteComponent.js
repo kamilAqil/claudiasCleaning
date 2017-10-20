@@ -2,7 +2,6 @@ import React from 'react';
 import BackgroundImage from '../images/cleanHousePicOne.jpg';
 import axios from 'axios';
 import ErrorComponent from './ErrorComponent';
-import {formValidation} from '../helpers/formValidation'
 let blackBorder = '1px solid black'
 
 let styles = {
@@ -130,8 +129,21 @@ class QuoteComponent extends React.Component{
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
+        this.validateForm = this.validateForm.bind(this);
     }
 
+    validateForm(firstName,lastName,phoneNumber,dateOfService){
+        console.log(firstName);
+        if(firstName!==''){
+            this.setState({firstNameValid:true});
+            console.log('firstName is valid');
+        }else{
+            this.setState({formErrors:[...this.state.formErrors,'Please enter first name']});
+        }
+    }
+
+   
+    
     handleChange(event){
         // console.log(event.target.name);
         var nameToChange = event.target.name;
@@ -141,10 +153,10 @@ class QuoteComponent extends React.Component{
     handleFormSubmit(e){
         e.preventDefault();
         console.log('clicked form submit');
-        // validate all entries 
-        console.log(formValidation);
-        formValidation(this.state.firstName,this.state.lastName,
-                       this.state.phoneNumber,this.state.dateOfService,this);
+
+        this.validateForm(this.state.firstName,this.state.lastName,
+                          this.state.phoneNumber,this.state);
+
         if(this.state.readyToSubmit){
             axios.post('/submitForm', {
                 firstName: this.state.firstName,

@@ -6,17 +6,14 @@ let styles = {
         border: '3px Solid Black',
         borderRadius: '10px',
         position: 'relative',
-        gridArea:'header'
+        gridArea:'header',
+        textAlign:'center'
     },
     titleHeaderStyle : {
-        marginTop: '7%',
-        marginLeft: '10%',
-        position: 'absolute'
+       
     },
     phoneNumberStyle : {
-        marginTop: '7%',
-        marginLeft: '60%',
-        position: 'absolute'
+        
     }
 }
 
