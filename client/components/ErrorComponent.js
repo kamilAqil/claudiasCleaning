@@ -15,8 +15,8 @@ const ErrorComponent = (errors) => {
 
     return(
             <div id="errorContainer" style={styles.errorComponentStyle}>
-                {errorsArray.map((error)=>{
-                    return(<div>{error}</div>)
+                {errorsArray.map((error,index)=>{
+                    return(<div key={index}>{index+1}. {error}</div>)
                 })}
             </div>
     )     
