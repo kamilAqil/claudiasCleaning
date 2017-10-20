@@ -13,7 +13,7 @@ let styles = {
         position: 'relative',
         display: 'grid',
         gridTemplateColumns: '1fr',
-        gridTemplateRows: '1fr 1fr 2fr 3fr',
+        gridTemplateRows: '1fr 2fr 2fr 2fr',
         gridTemplateAreas: `"header"
                             "quote"
                             "about"

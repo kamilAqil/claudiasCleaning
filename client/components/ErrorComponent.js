@@ -10,17 +10,12 @@ let styles = {
 }
 
 
-const ErrorComponent = (errors) => {
-    for(var key in errors){
-       
-        if(errors[key].length>0){
-            console.log("Error", errors[key]);
-        }
-    }
-   return (<div id='formErrorComponent' style={styles.errorComponentStyle}>
-               <p>derp</p>
-            
-            </div>)
+const ErrorComponent = (formErrors) => {
+   console.log(formErrors);
+    return (<div id='formErrorComponent' style={styles.errorComponentStyle}>
+        <p>words</p>
+
+    </div>)
 }
 
 export default ErrorComponent
