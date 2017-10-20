@@ -133,13 +133,34 @@ class QuoteComponent extends React.Component{
     }
 
     validateForm(firstName,lastName,phoneNumber,dateOfService){
-        console.log(firstName);
-        if(firstName!==''){
-            this.setState({firstNameValid:true});
-            console.log('firstName is valid');
+        let errorsArray = []
+        // if firstName is not empty set firstNameValid
+        // to true otherwise push message "set first name"
+        //  state.formErrors
+
+        if(firstName ==''){
+            // this.setState({ formErrors: [...this.state.formErrors, 'Please enter first name'] });
+            errorsArray.push('Please Enter First Name');
+            
         }else{
-            this.setState({formErrors:[...this.state.formErrors,'Please enter first name']});
+            this.setState({ firstNameValid: true });
+            console.log('firstName is valid');
         }
+
+        // if lastName is not empty set lastNameValid
+        // to true otherwise push message "set last name"
+        //  state.formErrors
+        // console.log('lastname',lastName);
+        if (lastName == '') {
+            this.setState({ formErrors: [...this.state.formErrors, 'Please enter last name'] });
+            errorsArray.push('Please Enter Last Name');
+        } else {
+            this.setState({ lastNameValid: true });
+            console.log('lastName is valid');
+        }
+        
+        this.setState({formErrors:errorsArray});
+
     }
 
    
@@ -147,7 +168,8 @@ class QuoteComponent extends React.Component{
     handleChange(event){
         // console.log(event.target.name);
         var nameToChange = event.target.name;
-        this.setState({[nameToChange]: event.target.value});
+        this.setState({[nameToChange]: event.target.value,
+                        formErrors:[]});
     }
 
     handleFormSubmit(e){
