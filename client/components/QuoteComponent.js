@@ -144,7 +144,7 @@ class QuoteComponent extends React.Component{
         // validate all entries 
         console.log(formValidation);
         formValidation(this.state.firstName,this.state.lastName,
-                       this.state.phoneNumber,this.state.dateOfService);
+                       this.state.phoneNumber,this.state.dateOfService,this);
         if(this.state.readyToSubmit){
             axios.post('/submitForm', {
                 firstName: this.state.firstName,
