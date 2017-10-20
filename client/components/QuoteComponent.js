@@ -1,8 +1,8 @@
 import React from 'react';
 import BackgroundImage from '../images/cleanHousePicOne.jpg';
 import axios from 'axios';
-import Form from 'react-validation/build/form';
-import Input from 'react-validation/build/input';
+import ErrorComponent from './ErrorComponent';
+
 let blackBorder = '1px solid black'
 
 let styles = {
@@ -118,7 +118,15 @@ class QuoteComponent extends React.Component{
         super(props);
         this.state = {
             firstName : '',
-            lastName:''
+            lastName:'',
+            phoneNumber:'',
+            dateOfService:'',
+            formErrors:{firstName:'not valid',lastName:'',phoneNumber:'',dateOfService:''},
+            firstNameValid:false,
+            lastNameValid:false,
+            phoneNumberValid:false,
+            dateOfServiceValid:false,
+            readyToSubmit : false
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -134,17 +142,26 @@ class QuoteComponent extends React.Component{
         // console.log(this.state);
     }
 
-    handleFormSubmit(event){
+    handleFormSubmit(e){
+        e.preventDefault();
         console.log('clicked form submit');
+        // validate all entries 
+        if(this.state.firstName==''){
+            console.log('please enter a first name');
+        }
 
-        axios.post('/submitForm',{
-            firstName : this.state.firstName,
-            lastName : this.state.lastName,
-            phoneNumber : this.state.phoneNumber,
-            date : this.state.dateOfService
-        }).then(function(response){
-            console.log(response);
-        });
+
+        if(this.state.readyToSubmit){
+            axios.post('/submitForm', {
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                phoneNumber: this.state.phoneNumber,
+                date: this.state.dateOfService
+            }).then(function (response) {
+                console.log(response);
+            });
+        }
+       
     }
 
     render(){
@@ -152,30 +169,30 @@ class QuoteComponent extends React.Component{
             <div id='formContainer' style={styles.containerStyle}>
                 <img src='/images/cleanHousePicOne.jpg' style={styles.roomPictureBackgroundStyle}></img>
                 <div style={styles.formBackgroundStyle}></div>
-                    
-                    <form style={styles.formGrid}>
+                    <form style={styles.formGrid} onSubmit={this.handleFormSubmit}>
+                    <ErrorComponent errors={this.state.formErrors} />
                         <span style={styles.formHeaderStyle}>Get A Quote</span>
                         <div style={styles.formGroupInputOneStyle}>
                             <span>First Name</span><br />
-                            <input name='firstName' style={styles.textAreaStyle} placeholder='First Name' onChange={this.handleChange} value={this.state.firstName} required/>
+                            <input name='firstName' id='firstName' style={styles.textAreaStyle} 
+                            placeholder='First Name' onChange={this.handleChange} value={this.state.firstName}/>
                         </div>
                         <div style={styles.formGroupInputTwoStyle}>
                             <span>Last Name</span><br />
-                            <input name='lastName' style={styles.textAreaStyle} placeholder='Last Name' 
-                            onChange={this.handleChange} required />
+                            <input name='lastName' id='lastName' style={styles.textAreaStyle} 
+                            placeholder='Last Name' onChange={this.handleChange}/>
                         </div>
                         <div style={styles.formGroupInputThreeStyle}>
                             <span>Phone Number</span><br />
-                            <input type='email' style={styles.textAreaStyle} placeholder='Phone Number' 
-                            onChange={this.handleChange} required />
+                            <input type='text' name='phoneNumber' style={styles.textAreaStyle} placeholder='Phone Number' 
+                            onChange={this.handleChange}/>
                         </div>
                         <div style={styles.formGroupInputFourStyle}>
                             <span>Date of Service</span><br />
                             <input name='dateOfService' style={styles.textAreaStyle} type='date' 
-                            onChange={this.handleChange} required />
+                            onChange={this.handleChange}/>
                             <br/>
-                            <input type='submit' value='submit' style={styles.submitButtonStyle}
-                                onClick={this.handleFormSubmit}></input>
+                            <input type='submit' value='submit' style={styles.submitButtonStyle}></input>
                         </div>
                     </form>
                     
