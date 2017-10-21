@@ -121,10 +121,6 @@ class QuoteComponent extends React.Component{
             phoneNumber:'',
             dateOfService:'',
             formErrors:[],
-            firstNameValid:false,
-            lastNameValid:false,
-            phoneNumberValid:false,
-            dateOfServiceValid:false,
             readyToSubmit : false
         };
         this.handleChange = this.handleChange.bind(this);
@@ -134,33 +130,55 @@ class QuoteComponent extends React.Component{
 
     validateForm(firstName,lastName,phoneNumber,dateOfService){
         let errorsArray = []
+        let phoneRegExHyphen = /^\d{1}-\d{3}-\d{3}-\d{4}/;
+        let phoneRegExParenthesis = /^\(\d{3}\)\d{3}\-\d{4}/;
+        let phoneRegExPlain = /^\d{10}/;
         // if firstName is not empty set firstNameValid
         // to true otherwise push message "set first name"
         //  state.formErrors
-
-        if(firstName ==''){
-            // this.setState({ formErrors: [...this.state.formErrors, 'Please enter first name'] });
+        if (firstName ==''){
             errorsArray.push('Please Enter First Name');
-            
+        
         }else{
-            this.setState({ firstNameValid: true });
             console.log('firstName is valid');
         }
-
         // if lastName is not empty set lastNameValid
         // to true otherwise push message "set last name"
         //  state.formErrors
         // console.log('lastname',lastName);
         if (lastName == '') {
-            this.setState({ formErrors: [...this.state.formErrors, 'Please enter last name'] });
             errorsArray.push('Please Enter Last Name');
         } else {
-            this.setState({ lastNameValid: true });
             console.log('lastName is valid');
         }
-        
-        this.setState({formErrors:errorsArray});
 
+        // if the phoneNumber does not matches the regEx 
+        // then push message "enter valid phone number"
+        // otherwise set phoneNumbervalie to true'
+
+        if (phoneNumber.match(phoneRegExPlain) || phoneNumber.match(phoneRegExHyphen) || phoneNumber.match(phoneRegExParenthesis)){
+            console.log('phone number valid');
+        }else{
+            errorsArray.push('Please Enter Valid Phone Number');
+        }
+
+        this.setState({formErrors:[...errorsArray]},()=>{
+            if (errorsArray.length == 0) {
+               
+                    console.log('ready to submit');
+
+                    axios.post('/submitForm', {
+                        firstName: firstName,
+                        lastName: lastName,
+                        phoneNumber: phoneNumber,
+                        date: dateOfService
+                    }).then(function (response) {
+                        console.log(response);
+                    });
+               
+            }
+        });
+        
     }
 
    
@@ -177,18 +195,11 @@ class QuoteComponent extends React.Component{
         console.log('clicked form submit');
 
         this.validateForm(this.state.firstName,this.state.lastName,
-                          this.state.phoneNumber,this.state);
-
-        if(this.state.readyToSubmit){
-            axios.post('/submitForm', {
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                phoneNumber: this.state.phoneNumber,
-                date: this.state.dateOfService
-            }).then(function (response) {
-                console.log(response);
-            });
-        }
+                          this.state.phoneNumber,this.state.dateOfService);   
+        
+                     
+          
+        
        
     }
 
@@ -212,7 +223,7 @@ class QuoteComponent extends React.Component{
                         </div>
                         <div style={styles.formGroupInputThreeStyle}>
                             <span>Phone Number</span><br />
-                            <input type='text' name='phoneNumber' style={styles.textAreaStyle} placeholder='Phone Number' 
+                            <input type='text' name='phoneNumber' style={styles.textAreaStyle} placeholder='(714)333-4444' 
                             onChange={this.handleChange}/>
                         </div>
                         <div style={styles.formGroupInputFourStyle}>
