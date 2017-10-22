@@ -7,13 +7,12 @@ let blackBorder = '1px solid black'
 let styles = {
     containerStyle : {
         gridArea: 'quote',
-        height:'100%',
-        width:'100%',
-        marginTop:'10px',
         padding:'5px',
         border: '2px solid #F0FF79',
         position: 'relative',
-        borderRadius: '10px'
+        borderRadius: '10px',
+        justifySelf:'center',
+        width:'97%'
     },
     formGrid : {
         height: '100%',
