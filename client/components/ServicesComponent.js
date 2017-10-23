@@ -8,13 +8,14 @@ let styles = {
         border:'1px solid black',
         borderRadius:'10px',
         justifySelf:'center',
-        width:'97%'
+        width:'97%',
+        marginBottom:'1%'
     }
 };
 
 const ServicesComponent = () => {
     return(
-            <div id='servicesComponent' style={styles.servicesComponentStyle}>
+            <div id='servicesComponent'>
                 services component
             </div>
     );

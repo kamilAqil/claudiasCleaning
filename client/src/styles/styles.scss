@@ -1,3 +1,165 @@
+$black-border: 1px solid black;
+
 #welcomeHeading {
     color:black;
+}
+
+#mainContainer {
+    width: 100%;
+        height: 1080px;
+        overflow:scroll;
+        border-radius: 5px;
+        margin: auto;
+        background-color: #00CDFF;
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-row-gap:10px;
+        grid-template-rows: 1fr 2fr 2fr 2fr;
+        grid-template-areas: "header"
+                            "quote"
+                            "about"
+                            "services";
+}
+
+#headerContainer {
+    background-color: #FFFFFF;
+    border: 3px Solid Black;
+    border-radius: 10px;
+    position: relative;
+    grid-area: header;
+    text-align: center;
+}
+
+#formContainer {
+    grid-area: quote;
+    padding:5px;
+    border: 2px solid #F0FF79;
+    position: relative;
+    border-radius: 10px;
+    justify-self: center;
+    width: 97%;
+}
+
+#formBackground { 
+    width: 95%;
+    height: 95%;
+    position: absolute;
+    background-color: white;
+    top: 2.5%;
+    left: 2.5%;
+    z-index: 0;
+    border-radius: 10px;
+    filter: blur(50px) brightness(150%) opacity(50%);
+}
+
+#formGrid {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 2fr 2fr;
+    grid-template-areas: "header header"
+                        "r1C1 r1C2"
+                        "r2C1 r2C2";
+}
+
+
+
+.textAreaStyle {
+    border-radius: 10px;
+    width:60%;
+    text-align: center;
+    border: $black-border;
+    height: 35px;
+    font-size: 15px;
+}
+
+#roomPictureBackgroundStyle{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    top: 0px;
+    left: 0px;
+    z-index: 0;
+}
+
+#quoteFormHeader { 
+    grid-area: header;
+    font-size: 30px;
+    z-index: 1;
+    justify-self: center;
+    align-self: center
+}
+
+#formGroupInputOne{
+    grid-area: r1C1;
+    width: 100%;
+    z-index: 1;
+    justify-self: center;
+    align-self: start;
+    text-align: center;
+}
+
+#formGroupInputTwo{
+    grid-area: r1C2;
+    width: 100%;
+    z-index: 1;
+    justify-self: center;
+    align-self: start;
+    text-align: center;
+}
+
+#formGroupInputThree{
+    grid-area: r2C1;
+    width: 100%;
+    z-index: 1;
+    justify-self: center;
+    align-self: start;
+    text-align: center;
+}
+
+#formGroupInputFour{
+    grid-area: r2C2;
+    width: 100%;
+    z-index: 1;
+    justify-self: center;
+    align-self: start;
+    text-align: center;
+}
+
+#aboutComponent{
+    z-index: 1;
+    grid-area:about;
+    border:$black-border;
+    border-radius:10px;
+    background-color:#FFFFFF;
+    justify-self:center;
+    width:97%;
+}
+
+#servicesComponent {
+    z-index:1;
+    grid-area:services;
+    background-color:#FFFFFF;
+    border:$black-border;
+    border-radius:10px;
+    justify-self:center;
+    width:97%;
+    margin-bottom:1%;
+}
+
+#errorComponent{
+    z-index:1;
+    color:black;
+    font-size:20px;
+    grid-area:r2C2;
+}
+
+#formSubmitButton {
+    border-radius: 5px;
+    background-color: #004EFF;
+    border: $black-border;
+    color: white;
 }
