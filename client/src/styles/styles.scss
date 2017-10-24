@@ -160,6 +160,47 @@ $black-border: 1px solid black;
 
 #servicesHeader {
     grid-area:sR1C2;
+    text-decoration: underline;
+    justify-self: center;
+}
+
+.serviceContainer{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr; 
+}
+
+#serviceOneContainer{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    border: $black-border;
+    grid-area: sR2C1;
+    grid-template-areas: "serviceOneDescriptionRow1Column1 serviceOneDescriptionRow1Column2 serviceOneDescriptionRow1Column3"
+                         "serviceOneDescriptionRow2Column1 serviceOneDescriptionRow2Column2 serviceOneDescriptionRow2Column3";
+}
+
+.serviceImageSvg{
+    height: 50%;
+    position: absolute;
+    left: 50%;
+}
+
+#serviceOneImage{
+    grid-area: serviceOneDescriptionRow1Column2;
+    align-self: center;
+}
+
+.serviceDescription{
+    border: $black-border;
+    width: 95%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#serviceOneDescription{
+    grid-area: serviceOneDescriptionRow2Column2;
 }
 
 #errorComponent{

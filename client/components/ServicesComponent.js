@@ -17,10 +17,10 @@ const ServicesComponent = () => {
     return(
             <div id='servicesComponent'>
                 <h3 id='servicesHeader'>Services</h3>
-                <div id='serviceOneContainer'>
+                <div id='serviceOneContainer' className='serviceContainer'>
                     <img src="../images/cleaningIcons/carpetCleaning.svg" 
-                    class='serviceImageSvg' id='serviceOneImage'/>
-                    <p class='serviceDescription' 
+                    className='serviceImageSvg' id='serviceOneImage'/> 
+                    <p className='serviceDescription' 
                     id='serviceOneDescription'>
                     I does the carpet cleaning and stuff
                     </p>
