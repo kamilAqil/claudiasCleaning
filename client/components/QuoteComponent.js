@@ -106,22 +106,22 @@ class QuoteComponent extends React.Component{
                         <span id='quoteFormHeader' >Get A Quote</span>
                         <div id='formGroupInputOne' >
                             <span>First Name</span><br />
-                            <input name='firstName' id='firstName' class='textAreaStyle' 
+                            <input name='firstName' id='firstName' className='textAreaStyle' 
                             placeholder='First Name' onChange={this.handleChange} value={this.state.firstName}/>
                         </div>
                         <div id='formGroupInputTwo'>
                             <span>Last Name</span><br />
-                            <input name='lastName' id='lastName' class='textAreaStyle' 
+                            <input name='lastName' id='lastName' className='textAreaStyle' 
                             placeholder='Last Name' onChange={this.handleChange}/>
                         </div>
                         <div id='formGroupInputThree'>
                             <span>Phone Number</span><br />
-                            <input type='text' name='phoneNumber' class='textAreaStyle' placeholder='(714)333-4444' 
+                            <input type='text' name='phoneNumber' className='textAreaStyle' placeholder='(714)333-4444' 
                             onChange={this.handleChange}/>
                         </div>
                         <div id='formGroupInputFour'>
                             <span>Date of Service</span><br />
-                            <input name='dateOfService' class='textAreaStyle' type='date' 
+                            <input name='dateOfService' className='textAreaStyle' type='date' 
                             onChange={this.handleChange}/>
                             <br/>
                             <input type='submit' value='submit' id='formSubmitButton' ></input>

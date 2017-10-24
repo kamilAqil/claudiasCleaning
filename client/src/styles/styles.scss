@@ -29,11 +29,12 @@ $black-border: 1px solid black;
     position: relative;
     grid-area: header;
     text-align: center;
+    justify-self: center;
+    width: 97%;
 }
 
 #formContainer {
     grid-area: quote;
-    padding:5px;
     border: 2px solid #F0FF79;
     position: relative;
     border-radius: 10px;
@@ -124,6 +125,7 @@ $black-border: 1px solid black;
     grid-area: r2C2;
     width: 100%;
     z-index: 1;
+    position: relative;
     justify-self: center;
     align-self: start;
     text-align: center;
@@ -140,7 +142,7 @@ $black-border: 1px solid black;
 }
 
 #servicesComponent {
-    z-index:1;
+    z-index:0;
     grid-area:services;
     background-color:#FFFFFF;
     border:$black-border;
@@ -148,6 +150,16 @@ $black-border: 1px solid black;
     justify-self:center;
     width:97%;
     margin-bottom:1%;
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    grid-template-rows: 1fr 2fr 2fr;
+    grid-template-areas: "sR1C1 sR1C2 sR1C3"
+                         "sR2C1 sR2C2 sR2C3"
+                         "sR3C1 sR3C2 sR3C3"
+}
+
+#servicesHeader {
+    grid-area:sR1C2;
 }
 
 #errorComponent{
@@ -162,4 +174,10 @@ $black-border: 1px solid black;
     background-color: #004EFF;
     border: $black-border;
     color: white;
+    position: absolute;
+    right: 21%;
+    bottom: -40%;
+    width: 20%;
 }
+
+

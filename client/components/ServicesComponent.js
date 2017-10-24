@@ -16,7 +16,15 @@ let styles = {
 const ServicesComponent = () => {
     return(
             <div id='servicesComponent'>
-                services component
+                <h3 id='servicesHeader'>Services</h3>
+                <div id='serviceOneContainer'>
+                    <img src="../images/cleaningIcons/carpetCleaning.svg" 
+                    class='serviceImageSvg' id='serviceOneImage'/>
+                    <p class='serviceDescription' 
+                    id='serviceOneDescription'>
+                    I does the carpet cleaning and stuff
+                    </p>
+                </div>
             </div>
     );
 }
